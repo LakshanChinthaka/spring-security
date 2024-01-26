@@ -1,12 +1,9 @@
 package com.chinthaka.springsecurity.user;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/v1/")
+//@RequestMapping("api/v1")
 public class UserController {
 
     private final UserService userService;
@@ -15,8 +12,17 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("user")
-    public User createUser(@RequestBody User user){
+    @PostMapping("/user")
+    public User createUser(@RequestBody User user) {
         return this.userService.createUser(user);
+    }
+    @GetMapping("/secured")
+    public String secure(){
+        return "Secured endpoint";
+    }
+
+    @GetMapping("/public")
+    public String publicEndpoint(){
+        return "public endpoint";
     }
 }
