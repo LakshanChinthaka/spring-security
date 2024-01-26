@@ -1,5 +1,6 @@
 package com.chinthaka.springsecurity.user;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,6 +21,13 @@ public class UserController {
     public String secure(){
         return "Secured endpoint";
     }
+
+    @GetMapping("/secured-admin")
+    @PreAuthorize("hasRole('ROLE_admin')")
+    public String secureAdmin(){
+        return "Only can see admin";
+    }
+
 
     @GetMapping("/public")
     public String publicEndpoint(){

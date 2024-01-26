@@ -29,7 +29,7 @@ public class UserAuthService implements UserDetailsService {
         return new UserDetails() {
             @Override
             public Collection<? extends GrantedAuthority> getAuthorities() {
-                return AuthorityUtils.createAuthorityList("user");
+                return AuthorityUtils.createAuthorityList("ROLE_" + user.getRole());
             }
 
             @Override
