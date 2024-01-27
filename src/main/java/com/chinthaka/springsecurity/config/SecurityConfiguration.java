@@ -1,5 +1,6 @@
 package com.chinthaka.springsecurity.config;
 
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -44,7 +45,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/secured").authenticated()
-                .antMatchers("/secured-admin").hasAnyRole("admin")
+//                .antMatchers("/secured-admin").hasAnyRole("admin")
+                .antMatchers(HttpMethod.PUT,"/update/{id}").authenticated()
                 .and()
                 .authorizeRequests()
                 .anyRequest()
